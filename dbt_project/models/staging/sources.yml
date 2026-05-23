@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: raw
+    database: SALES_ANALYTICS
+    schema: RAW
+
+    tables:
+      - name: orders
+        loaded_at_field: cast(order_date as timestamp)
+
+        freshness:
+          warn_after: {count: 365, period: hour}
+          error_after: {count: 730, period: hour}
