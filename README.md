@@ -100,17 +100,33 @@ Implemented:
 
 # Project Structure
 
+```text
 Sales Analytics ELT Pipeline
+│
 ├── airflow
+│   ├── dags
+│   ├── config
+│   └── docker-compose.yaml
+│
 ├── data
+│   ├── customers.csv
+│   ├── products.csv
+│   └── orders.csv
+│
 ├── dbt_project
+│   ├── models
+│   ├── tests
+│   └── dbt_project.yml
+│
 ├── ingestion
-├── logs
-├── sql
+│   └── load_to_snowflake.py
+│
+├── screenshots
+├── docs
 ├── .env
 ├── .gitignore
 └── README.md
-
+```
 ---
 
 # How to Run
