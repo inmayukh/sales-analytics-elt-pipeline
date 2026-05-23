@@ -3,3 +3,7 @@ venv/
 target/
 logs/
 __pycache__/
+airflow/logs/
+airflow/config/airflow.cfg
+dbt_packages/
+*.pyc
