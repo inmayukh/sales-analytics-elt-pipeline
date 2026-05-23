@@ -16,20 +16,23 @@ The pipeline ingests sales data from CSV files into Snowflake, performs transfor
 
 # Architecture
 
+# Architecture
+
+```text
 CSV Files
-   ↓
+    ↓
 Python Ingestion
-   ↓
+    ↓
 Snowflake RAW Tables
-   ↓
+    ↓
 dbt Staging Models
-   ↓
-dbt Mart Models
-(Dimensions + Facts)
-   ↓
+    ↓
+dbt Mart Models (Dimensions + Facts)
+    ↓
 dbt Tests & Freshness Checks
-   ↓
+    ↓
 Airflow Orchestration
+```
 
 ---
 
