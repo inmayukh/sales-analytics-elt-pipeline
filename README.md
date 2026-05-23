@@ -16,8 +16,6 @@ The pipeline ingests sales data from CSV files into Snowflake, performs transfor
 
 # Architecture
 
-# Architecture
-
 ```text
 CSV Files
     ↓
