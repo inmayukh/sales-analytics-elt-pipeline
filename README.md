@@ -31,6 +31,13 @@ dbt Tests & Freshness Checks
    ↓
 Airflow Orchestration
 
+---
+
+# Architecture Diagram
+
+Detailed architecture is available here:
+
+[View Architecture Diagram](docs/architecture.md)
 
 ---
 
