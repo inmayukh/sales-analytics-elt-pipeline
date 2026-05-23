@@ -1,5 +1,6 @@
 # Sales Analytics ELT Pipeline Architecture
 
+```mermaid
 flowchart TD
 
     A[CSV Source Files<br/>customers, products, orders] --> B[Python Ingestion Script]
@@ -26,3 +27,4 @@ flowchart TD
 
     L[.env Credentials] --> B
     L --> H
+```
