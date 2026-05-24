@@ -25,6 +25,14 @@ with DAG(
         """
     )
 
+    check_source_freshness = BashOperator(
+    task_id="check_source_freshness",
+    bash_command="""
+    cd /opt/project/dbt_project &&
+    dbt source freshness
+    """
+    )
+
     run_dbt = BashOperator(
         task_id='run_dbt',
         bash_command="""
@@ -41,4 +49,4 @@ with DAG(
         """
     )
 
-    run_ingestion >> run_dbt >> run_dbt_tests
+    run_ingestion >> check_source_freshness >> run_dbt >> run_dbt_tests

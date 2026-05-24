@@ -10,5 +10,5 @@ sources:
         loaded_at_field: cast(order_date as timestamp)
 
         freshness:
-          warn_after: {count: 365, period: hour}
-          error_after: {count: 730, period: hour}
+          warn_after: {count: 365, period: day}
+          error_after: {count: 365, period: day}
