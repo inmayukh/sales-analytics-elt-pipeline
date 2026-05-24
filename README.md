@@ -183,6 +183,49 @@ dbt test
 
 ---
 
+# Setup Requirements
+
+To run this project successfully, users must configure their own cloud resources and credentials because sensitive information is intentionally excluded from the repository.
+
+## Required Setup
+
+Users need to create:
+
+- AWS S3 bucket
+- Snowflake account and warehouse
+- Snowflake RAW tables
+- Snowflake external stage
+- Local `.env` file with credentials
+
+## Required Environment Variables
+
+Create a `.env` file in the project root with:
+
+```env
+SNOWFLAKE_USER=your_username
+SNOWFLAKE_PASSWORD=your_password
+SNOWFLAKE_ACCOUNT=your_account
+SNOWFLAKE_WAREHOUSE=COMPUTE_WH
+SNOWFLAKE_DATABASE=SALES_ANALYTICS
+SNOWFLAKE_SCHEMA=RAW
+SNOWFLAKE_ROLE=ACCOUNTADMIN
+```
+
+## AWS Setup
+
+Create an S3 bucket and upload:
+
+- customers.csv
+- products.csv
+- orders.csv
+
+Then configure a Snowflake external stage pointing to the bucket.
+
+## Security Note
+
+Credentials, secrets, and environment files are intentionally excluded from GitHub using `.gitignore` for security best practices.
+
+---
 # Screenshots
 
 ## Airflow DAG
