@@ -1,24 +1,27 @@
+from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.providers.standard.operators.bash import BashOperator
 from datetime import datetime
 
 default_args = {
-    'owner': 'mayukh',
+    "owner": "airflow",
+    "retries": 3,
+    "retry_delay": timedelta(minutes=2),
 }
 
 with DAG(
-    dag_id='sales_elt_pipeline',
+    dag_id="sales_elt_pipeline",
     default_args=default_args,
-    start_date=datetime(2026, 5, 1),
-    schedule='15 * * * *',
-    catchup=False
+    start_date=datetime(2025, 1, 1),
+    schedule="15 * * * *",
+    catchup=False,
 ) as dag:
 
     run_ingestion = BashOperator(
         task_id='run_ingestion',
         bash_command="""
         cd /opt/project/ingestion &&
-        python load_to_snowflake.py
+        python load_s3_to_snowflake.py
         """
     )
 

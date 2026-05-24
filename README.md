@@ -2,15 +2,15 @@
 
 ## Project Overview
 
-This project is an end-to-end modern ELT (Extract, Load, Transform) data pipeline built using:
+The pipeline ingests sales data from CSV files into Amazon S3, loads data into Snowflake using COPY INTO, performs transformations using dbt, validates data quality using dbt tests, and orchestrates the complete workflow using Airflow.
 
-* Python
-* Snowflake
-* dbt
-* Apache Airflow
-* Docker
+---
 
-The pipeline ingests sales data from CSV files into Snowflake, performs transformations using dbt, validates data quality using dbt tests, and orchestrates the complete workflow using Airflow.
+# Project Status
+
+✅ Active  
+✅ End-to-end pipeline operational  
+✅ Cloud ingestion integrated using Amazon S3  
 
 ---
 
@@ -19,7 +19,9 @@ The pipeline ingests sales data from CSV files into Snowflake, performs transfor
 ```text
 CSV Files
     ↓
-Python Ingestion
+Amazon S3
+    ↓
+Snowflake COPY INTO
     ↓
 Snowflake RAW Tables
     ↓
@@ -44,14 +46,16 @@ Detailed architecture is available here:
 
 # Tech Stack
 
-| Tool           | Purpose                       |
-| -------------- | ----------------------------- |
-| Python         | Data ingestion                |
-| Snowflake      | Cloud data warehouse          |
-| dbt            | Data transformation & testing |
-| Apache Airflow | Workflow orchestration        |
-| Docker         | Containerized Airflow setup   |
-| Git/GitHub     | Version control               |
+| Category | Technologies |
+|---|---|
+| Programming | Python, SQL |
+| Cloud | AWS S3 |
+| Data Warehouse | Snowflake |
+| Transformation | dbt |
+| Orchestration | Apache Airflow |
+| Containerization | Docker |
+| Version Control | Git, GitHub |
+| Data Modeling | Star Schema, Fact & Dimension Tables |
 
 ---
 
@@ -59,8 +63,10 @@ Detailed architecture is available here:
 
 ## Data Ingestion
 
-* CSV-based batch ingestion
-* Dynamic table loading using Python
+* Cloud-based ingestion using Amazon S3
+* Snowflake bulk loading using COPY INTO
+* Automated ingestion orchestration using Python
+* CSV-based batch ingestion pipeline
 * Logging and observability added
 
 ## Data Warehouse Modeling
@@ -88,7 +94,8 @@ Implemented:
 
 ## Orchestration
 
-* Automated DAG execution using Airflow
+* Automated DAG execution using Apache Airflow
+* End-to-end orchestration for S3 ingestion, dbt run, and dbt tests
 * Custom cron scheduling
 * Dockerized Airflow deployment
 
@@ -120,7 +127,8 @@ Sales Analytics ELT Pipeline
 │   └── dbt_project.yml
 │
 ├── ingestion
-│   └── load_to_snowflake.py
+│   ├── load_to_snowflake.py
+│   └── load_s3_to_snowflake.py
 │
 ├── screenshots
 ├── docs
@@ -130,45 +138,79 @@ Sales Analytics ELT Pipeline
 ```
 ---
 
-# How to Run
+# How To Run The Project
 
-## 1. Activate Virtual Environment
+## Clone Repository
 
+```bash
+git clone https://github.com/inmayukh/sales-analytics-elt-pipeline.git
+```
+
+## Create Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+## Activate Virtual Environment
+
+### Windows
+
+```bash
 .\venv\Scripts\Activate.ps1
+```
 
+## Install Dependencies
 
-## 2. Run Ingestion
+```bash
+pip install -r airflow/requirements.txt
+```
 
-python ingestion/load_to_snowflake.py
+## Start Airflow
 
+```bash
+docker compose up
+```
 
-## 3. Run dbt Models
+## Run dbt
 
+```bash
 cd dbt_project
 
 dbt run
-
-
-## 4. Run dbt Tests
-
 dbt test
+```
 
+---
 
-## 5. Start Airflow
+# Screenshots
 
-docker compose up
+## Airflow DAG
 
+![Airflow DAG](screenshots/airflow_dag.png)
+
+---
+
+## Airflow Logs
+
+![Airflow Logs](screenshots/airflow_logs.png)
+
+---
+
+## Snowflake Warehouse Tables
+
+![Snowflake Tables](screenshots/snowflake_tables.png)
 
 ---
 
 # Future Improvements
 
-* S3 integration
-* Real-time API ingestion
-* Slack/email alerting
-* Advanced Airflow monitoring
-* Slowly Changing Dimensions (SCD)
-* CI/CD integration
+- Production-grade Snowflake storage integration using IAM roles
+- CI/CD integration using GitHub Actions
+- Automated alerting and notifications
+- Real-time streaming ingestion
+- Advanced dbt snapshots and macros
+- Infrastructure as Code (Terraform)
 
 ---
 
